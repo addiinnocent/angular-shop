@@ -1,18 +1,23 @@
+_Config = require('./config.json')
+
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+
+const database = require('./database/db');
+const routes = require('./routes');
 
 const app = express()
 
-app.get('/', (req, res) => {
-    res.send('Welcome to Node API')
-})
+routes(app, bodyParser);
+app.use((req, res) => {
+	res.status(404).send('404: Page not Found');
+});
 
-app.get('/getData', (req, res) => {
-    res.json({'message': 'Hello World'})
-})
-
-app.post('/postData', bodyParser.json(), (req, res) => {
-    res.json(req.body)
-})
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+const options = {useNewUrlParser: true, useFindAndModify: false};
+mongoose.connect('mongodb://localhost:'+_Config.mongodb+'/shop', options);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  app.listen(_Config.port, () => console.log('Example app listening on port '+_Config.port))
+});
