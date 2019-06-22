@@ -1,4 +1,4 @@
-# Webshop Angular, NodeJS restful api
+# Webshop MEAN stack
 
 Ein Projekt von der Coding Stübchen Community.
 Bevor das Programm mit dem Command 'npm start' gestartet werden kann, müssen folgende Programme installiert werden (npm install).
