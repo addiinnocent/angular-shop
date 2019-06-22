@@ -6,9 +6,8 @@ Bevor das Programm mit dem Command 'npm start' gestartet werden kann, müssen fo
 # Dependencies:
 
 Programme:
+- NodeJS (+npm)
 - Angular CLI
-- NodeJS
-- npm
 - MongoDB
 
 Module (included):
